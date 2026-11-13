@@ -7,6 +7,14 @@ import { queryResolver as CommentResolvers } from './src/queryResolver';
 
 // Tüm modüllerin typeDefs ve resolvers tanımlarını burada birleştirebilirsiniz
 const server = new ApolloServer({
+    context: ({ req }) => {
+        const defaultContext = {
+    language: "tr",
+    // dataLoaders: initializeDataLoaders(dataLoaders),
+  };
+        // İsteğe bağlı olarak, kullanıcı kimlik doğrulaması veya diğer bağlam verilerini burada ekleyebilirsiniz
+        return { ...defaultContext, user: "1" };
+    },
   typeDefs: [User, Comment],
   resolvers: [UserTimeResolvers, CommentResolvers] as Resolvers, // Tip güvenliği için Resolvers arayüzünü bağlıyoruz
 });

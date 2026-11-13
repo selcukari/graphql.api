@@ -11,8 +11,9 @@ const queryResolvers: QueryResolvers = {
         { id: '5', name: 'Ahmet', email: 'ahmet@example.com' }
       ];
     },
-    user: (_, { id }) => {
+    user: (_, { id }, {user, language}) => {
       // 'id' otomatik olarak string tipinde gelir
+      console.log(`Kullanıcı ID: ${id}, Context User: ${user}, Language: ${language}`);
       return { id, name: 'Ali', email: 'ali@example.com' };
     },
 };
