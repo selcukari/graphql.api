@@ -1,20 +1,21 @@
 import { QueryResolvers } from '../generated/graphql';
 import { typeDefs } from './typeDefs';
+import { getUserById, getAllUsers } from '../../repository/user';
 
 const queryResolvers: QueryResolvers = {
     users: () => {
-      return [
-        { id: '1', name: 'Ali', email: 'ali@example.com' },
-        { id: '2', name: 'Ayşe', email: 'ayse@example.com' },
-        { id: '3', name: 'Mehmet', email: 'mehmet@example.com' },
-        { id: '4', name: 'Fatma', email: 'fatma@example.com' },
-        { id: '5', name: 'Ahmet', email: 'ahmet@example.com' }
-      ];
+      
+      return getAllUsers();
     },
     user: (_, { id }, {user, language}) => {
-      // 'id' otomatik olarak string tipinde gelir
       console.log(`Kullanıcı ID: ${id}, Context User: ${user}, Language: ${language}`);
-      return { id, name: 'Ali', email: 'ali@example.com' };
+      const userData = getUserById(id);
+
+      if (!userData) {
+        throw new Error(`Kullanıcı bulunamadı: ${id}`);
+      }
+
+      return userData;
     },
 };
 
