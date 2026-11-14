@@ -1,19 +1,28 @@
 import gql from 'graphql-tag'
 
 export const typeDefs = gql`
-type User @cacheControl(maxAge: 180) {
-  id: ID!
+  type User @cacheControl(maxAge: 180) {
     """
-    user's name.
-    """
-  name: String!
-    """
-    The user's email.
-    """
-  email: String!
-}
+      user's id.
+      """
+    id: ID!
+      """
+      user's name.
+      """
+    name: String!
+      """
+      The user's email.
+      """
+    email: String!
+  }
 
-type Query {
-  users: [User!]!
-  user(id: ID!): User
-}`;
+  type Query {
+    """
+     get all users.
+    """
+    users: [User!]!
+    """
+     get user by id.
+    """
+    user(id: ID!): User
+  }`;
