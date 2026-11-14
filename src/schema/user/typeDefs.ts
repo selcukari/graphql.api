@@ -4,7 +4,7 @@ export const typeDefs = gql`
   type User @cacheControl(maxAge: 180) {
     """
       user's id.
-      """
+    """
     id: ID!
       """
       user's name.
