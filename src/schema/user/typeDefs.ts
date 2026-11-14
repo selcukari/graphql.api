@@ -25,4 +25,5 @@ export const typeDefs = gql`
      get user by id.
     """
     user(id: ID!): User
-  }`;
+  }
+`;
