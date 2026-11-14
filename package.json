@@ -5,6 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "dev": "npm run codegen && npx tsx index.ts",
+    "build": "tsc",
     "codegen": "graphql-codegen --config codegen.ts",
     "codegen:watch": "graphql-codegen --config codegen.ts --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
